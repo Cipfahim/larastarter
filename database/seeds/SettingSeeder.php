@@ -12,8 +12,8 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        Setting::updateOrCreate(['name' => 'application_name','value' => 'LaraStarter']);
-        Setting::updateOrCreate(['name' => 'system_email','value' => 'admin@mail.com']);
+        Setting::updateOrCreate(['name' => 'app_name','value' => 'LaraStarter']);
+        Setting::updateOrCreate(['name' => 'app_email','value' => 'admin@mail.com']);
         Setting::updateOrCreate(['name' => 'logo','value' => null]);
         Setting::updateOrCreate(['name' => 'favicon','value' => null]);
     }
