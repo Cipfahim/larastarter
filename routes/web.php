@@ -17,10 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('backend.dashboard');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

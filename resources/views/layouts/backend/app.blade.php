@@ -12,6 +12,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('css')
 </head>
 <body>
 <div id="app" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -25,11 +26,13 @@
             </div>
             @include('layouts.backend.partials.footer')
         </div>
-        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
     </div>
 </div>
 <!-- Scripts -->
 <script src="{{ asset('js/backend.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
+@stack('js')
+@include('vendor.lara-izitoast.toast')
 </body>
 </html>

@@ -1,1 +1,32 @@
-// All Custom CSS
+// izitoast
+@import '~izitoast/dist/css/iziToast.min.css';
+
+// Select2
+@import '~select2/dist/css/select2.min.css';
+
+// Dropify
+@import '~dropify/dist/css/dropify.min.css';
+.dropify-wrapper .dropify-message p {
+   font-size: initial;
+}
+
+.closed-sidebar:not(.closed-sidebar-mobile) .app-header .app-header__logo .navbar-brand {
+    display: none;
+}
+
+// DataTables style
+.dataTables_wrapper .dataTables_length {
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+.dataTables_wrapper .dataTables_filter {
+    padding-top: 1rem;
+    padding-right: 1rem;
+}
+.dataTables_wrapper .dataTables_info {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+.dataTables_wrapper .dataTables_paginate {
+    padding-right: 1rem;
+}
