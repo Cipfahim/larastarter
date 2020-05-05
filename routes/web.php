@@ -29,6 +29,11 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware'
     Route::resource('roles', 'RoleController')->except(['show']);
     Route::resource('users', 'UserController')->except(['show']);
 
+    // Backups
+    Route::resource('backups', 'BackupsController')->only(['index','store','destroy']);
+    Route::get('backups/{file_name}', 'BackupsController@download')->name('backups.download');
+    Route::delete('backups', 'BackupsController@clean')->name('backups.clean');
+
     // Pages routes
     Route::resource('pages', 'PageController')->except(['show']);
 

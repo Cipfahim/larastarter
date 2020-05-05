@@ -56,6 +56,12 @@
                 </li>
                 <li class="app-sidebar__heading">System</li>
                 <li>
+                    <a href="{{ route('app.backups.index') }}" class="{{ Route::is('app.backups.index') ? 'mm-active' : '' }}">
+                        <i class="metismenu-icon pe-7s-cloud"></i>
+                        Backups
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('app.settings.index') }}" class="{{ Route::is('app.settings.index') ? 'mm-active' : '' }}">
                         <i class="metismenu-icon pe-7s-settings"></i>
                         Settings
