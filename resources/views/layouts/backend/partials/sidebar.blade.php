@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('app.settings.index') }}" class="{{ Route::is('app.settings.index') ? 'mm-active' : '' }}">
+                    <a href="{{ route('app.settings.index') }}" class="{{ Request::is('app/settings*') ? 'mm-active' : '' }}">
                         <i class="metismenu-icon pe-7s-settings"></i>
                         Settings
                     </a>

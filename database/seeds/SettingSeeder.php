@@ -12,9 +12,21 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        Setting::updateOrCreate(['name' => 'app_name','value' => 'LaraStarter']);
-        Setting::updateOrCreate(['name' => 'app_email','value' => 'admin@mail.com']);
-        Setting::updateOrCreate(['name' => 'logo','value' => null]);
-        Setting::updateOrCreate(['name' => 'favicon','value' => null]);
+        // General Settings
+        Setting::updateOrCreate(['name' => 'site_title','value' => 'LaraStarter']);
+        Setting::updateOrCreate(['name' => 'site_description','value' => 'A laravel starter kit for web artisans.']);
+        Setting::updateOrCreate(['name' => 'site_address','value' => 'Dhaka,Bangladesh']);
+        // Logo Settings
+        Setting::updateOrCreate(['name' => 'site_logo','value' => null]);
+        Setting::updateOrCreate(['name' => 'site_favicon','value' => null]);
+        // Mail Settings
+        Setting::updateOrCreate(['name' => 'mail_mailer','value' => 'smtp']);
+        Setting::updateOrCreate(['name' => 'mail_host','value' => 'smtp.mailtrap.io']);
+        Setting::updateOrCreate(['name' => 'mail_port','value' => '2525']);
+        Setting::updateOrCreate(['name' => 'mail_username','value' => '']);
+        Setting::updateOrCreate(['name' => 'mail_password','value' => '']);
+        Setting::updateOrCreate(['name' => 'mail_encryption','value' => 'TLS']);
+        Setting::updateOrCreate(['name' => 'mail_from_address','value' => '']);
+        Setting::updateOrCreate(['name' => 'mail_from_name','value' => 'LaraStarter']);
     }
 }

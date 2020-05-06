@@ -7,8 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('settings.app_name', 'Laravel') }}</title>
+    <title>@yield('title') | {{ config('settings.site_title', 'Laravel') }}</title>
 
+    <link rel="icon"  href="{{ config('settings.site_favicon') != null ? Storage::disk('public')->url(config('settings.site_favicon')) : '' }}"/>
     <!-- Styles -->
     <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

@@ -30,9 +30,9 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware'
     Route::resource('users', 'UserController')->except(['show']);
 
     // Backups
-    Route::resource('backups', 'BackupsController')->only(['index','store','destroy']);
-    Route::get('backups/{file_name}', 'BackupsController@download')->name('backups.download');
-    Route::delete('backups', 'BackupsController@clean')->name('backups.clean');
+    Route::resource('backups', 'BackupController')->only(['index','store','destroy']);
+    Route::get('backups/{file_name}', 'BackupController@download')->name('backups.download');
+    Route::delete('backups', 'BackupController@clean')->name('backups.clean');
 
     // Profile
     Route::get('profile/', 'ProfileController@index')->name('profile.index');
@@ -41,7 +41,7 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware'
     // Security
     Route::get('profile/security', 'ProfileController@changePassword')->name('profile.password.change');
     Route::post('profile/security', 'ProfileController@updatePassword')->name('profile.password.update');
-    
+
     // Pages
     Route::resource('pages', 'PageController')->except(['show']);
 
@@ -61,6 +61,14 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware'
     });
 
     // Settings
-    Route::get('settings/general', 'SettingController@index')->name('settings.index');
-    Route::put('settings/general', 'SettingController@update')->name('settings.update');
+    Route::group(['as'=>'settings.','prefix'=>'settings'], function () {
+        Route::get('general', 'SettingController@index')->name('index');
+        Route::put('general', 'SettingController@update')->name('update');
+
+        Route::get('logo','SettingController@logo')->name('logo.index');
+        Route::put('logo','SettingController@updateLogo')->name('logo.update');
+
+        Route::get('mail','SettingController@mail')->name('mail.index');
+        Route::put('mail','SettingController@updateMailSettings')->name('mail.update');
+    });
 });

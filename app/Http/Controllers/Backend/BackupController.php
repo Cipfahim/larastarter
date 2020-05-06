@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
-class BackupsController extends Controller
+class BackupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class BackupsController extends Controller
                     'file_name' => $file_name,
                     'file_size' => $this->bytesToHuman($disk->size($f)),
                     'created_at' => Carbon::parse($disk->lastModified($f))->diffForHumans(),
-                    'download_link' => action('Backend\BackupsController@download', [$file_name]),
+                    'download_link' => action('Backend\BackupController@download', [$file_name]),
                 ];
             }
         }

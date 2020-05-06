@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    'default' => config('settings.mail_mailer',env('MAIL_MAILER', 'smtp')),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,11 +36,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'host' => config('settings.mail_host',env('MAIL_HOST', 'smtp.mailgun.org')),
+            'port' => config('settings.mail_port',env('MAIL_PORT', 587)),
+            'encryption' => config('settings.mail_encryption',env('MAIL_ENCRYPTION', 'tls')),
+            'username' => config('settings.mail_username',env('MAIL_USERNAME')),
+            'password' => config('settings.mail_password',env('MAIL_PASSWORD')),
             'timeout' => null,
         ],
 
@@ -83,8 +83,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => config('settings.mail_from_address',env('MAIL_FROM_ADDRESS', 'hello@example.com')),
+        'name' => config('settings.mail_from_name',env('MAIL_FROM_NAME', 'Example')),
     ],
 
     /*

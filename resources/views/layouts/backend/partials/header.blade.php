@@ -2,7 +2,7 @@
     <div class="app-header__logo">
         {{--<div class="logo-src"></div>--}}
         <div class="navbar-brand">
-            {{ config('settings.app_name') }}
+            {{ config('settings.site_title') }}
         </div>
         <div class="header__pane ml-auto">
             <div>
