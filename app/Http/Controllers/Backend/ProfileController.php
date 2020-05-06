@@ -20,7 +20,9 @@ class ProfileController extends Controller
     public function update(UpdateProfileRequest $request)
     {
         // Get logged in user
-        $user = Auth::user()->update([
+        $user = Auth::user();
+        // Update user info
+        $user->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);
@@ -36,7 +38,7 @@ class ProfileController extends Controller
     public function changePassword()
     {
         Gate::authorize('app.profile.password');
-        return view('backend.profile.change-password');
+        return view('backend.profile.security');
     }
 
     public function updatePassword(UpdatePasswordRequest $request)
@@ -49,11 +51,12 @@ class ProfileController extends Controller
                 ]);
                 Auth::logout();
                 notify()->success('Password Successfully Changed.', 'Success');
+                return redirect()->route('login');
             } else {
-                notify()->success('New password cannot be the same as old password.', 'Error');
+                notify()->warning('New password cannot be the same as old password.', 'Warning');
             }
         } else {
-            notify()->success('Current password not match.', 'Error');
+            notify()->error('Current password not match.', 'Error');
         }
         return redirect()->back();
     }

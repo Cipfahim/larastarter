@@ -66,7 +66,8 @@
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true"
                                      class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" tabindex="0" class="dropdown-item">Profile</button>
+                                    <a tabindex="0" class="dropdown-item" href="{{ route('app.profile.index') }}">Profile</a>
+                                    <a tabindex="0" class="dropdown-item" href="{{ route('app.profile.password.change') }}">Change Password</a>
                                     <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <button type="button" tabindex="0" class="dropdown-item" onclick="event.preventDefault();

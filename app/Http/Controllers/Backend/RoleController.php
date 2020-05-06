@@ -23,7 +23,7 @@ class RoleController extends Controller
     public function index()
     {
         Gate::authorize('app.roles.index');
-        $roles = Role::latest('id')->get();
+        $roles = Role::getAllRoles();
         return view('backend.roles.index',compact('roles'));
     }
 
@@ -35,7 +35,7 @@ class RoleController extends Controller
     public function create()
     {
         Gate::authorize('app.roles.create');
-        $modules = Module::all();
+        $modules = Module::getWithPermissions();
         return view('backend.roles.form',compact('modules'));
     }
 

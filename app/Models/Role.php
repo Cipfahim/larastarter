@@ -15,6 +15,18 @@ class Role extends Model
     protected $guarded = ['id'];
 
     /**
+     * Get all roles
+     *
+     * @return mixed
+     */
+    public static function getAllRoles()
+    {
+        return Cache::rememberForever('roles.all', function() {
+            return self::withCount('permissions')->latest('id')->get();
+        });
+    }
+
+    /**
      * Get roles for select
      *
      * @return mixed
@@ -31,6 +43,7 @@ class Role extends Model
      */
     public static function flushCache()
     {
+        Cache::forget('roles.all');
         Cache::forget('roles.getForSelect');
     }
 

@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         Gate::authorize('app.users.index');
-        $users = User::latest('id')->get();
+        $users = User::getAllUsers();
         return view('backend.users.index',compact('users'));
     }
 
@@ -32,7 +32,7 @@ class UserController extends Controller
     public function create()
     {
         Gate::authorize('app.users.create');
-        $roles = Role::all();
+        $roles = Role::getForSelect();
         return view('backend.users.form', compact('roles'));
     }
 

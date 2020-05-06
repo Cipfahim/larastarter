@@ -125,7 +125,7 @@
 
                                 <button type="submit" class="btn btn-primary">
                                     @isset($user)
-                                        <i class="fas fa-plus-circle"></i>
+                                        <i class="fas fa-arrow-circle-up"></i>
                                         <span>Update</span>
                                     @else
                                         <i class="fas fa-plus-circle"></i>

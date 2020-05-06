@@ -7,7 +7,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-users icon-gradient bg-mean-fruit">
+                    <i class="pe-7s-check icon-gradient bg-mean-fruit">
                     </i>
                 </div>
                 <div>{{ isset($role) ? 'Edit' : 'Create New' }} Role</div>
@@ -108,8 +108,8 @@
                         </button>
 
                         <button type="submit" class="btn btn-primary">
-                            @isset($user)
-                                <i class="fas fa-plus-circle"></i>
+                            @isset($role)
+                                <i class="fas fa-arrow-circle-up"></i>
                                 <span>Update</span>
                             @else
                                 <i class="fas fa-plus-circle"></i>

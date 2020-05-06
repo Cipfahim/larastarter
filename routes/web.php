@@ -21,11 +21,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Backend routes
+// Backend
 Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-    // Roles and Users Routes
+    // Roles and Users
     Route::resource('roles', 'RoleController')->except(['show']);
     Route::resource('users', 'UserController')->except(['show']);
 
@@ -34,24 +34,23 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware'
     Route::get('backups/{file_name}', 'BackupsController@download')->name('backups.download');
     Route::delete('backups', 'BackupsController@clean')->name('backups.clean');
 
-    // Pages routes
+    // Profile
+    Route::get('profile/', 'ProfileController@index')->name('profile.index');
+    Route::post('profile/', 'ProfileController@update')->name('profile.update');
+
+    // Security
+    Route::get('profile/security', 'ProfileController@changePassword')->name('profile.password.change');
+    Route::post('profile/security', 'ProfileController@updatePassword')->name('profile.password.update');
+    
+    // Pages
     Route::resource('pages', 'PageController')->except(['show']);
 
-    // User Profile and Password Routes
-    Route::group(['as'=>'profile.','prefix'=>'profile'], function () {
-        Route::get('/', 'ProfileController@index')->name('index');
-        Route::post('/', 'ProfileController@update')->name('update');
-
-        Route::get('/change-password', 'ProfileController@changePassword')->name('password.change');
-        Route::post('/update-password', 'ProfileController@updatePassword')->name('password.update');
-    });
-
-    // Menu Builder Routes
+    // Menu Builder
     Route::resource('menus', 'MenuController')->except(['show']);
     Route::post('menus/{menu}/order', 'MenuController@orderItem')->name('menus.order');
     Route::group(['as'=>'menus.','prefix'=>'menus/{id}/'], function () {
         Route::get('builder', 'MenuBuilderController@index')->name('builder');
-        // Menu Item Routes
+        // Menu Item
         Route::group(['as'=>'item.','prefix'=>'item'], function () {
             Route::get('/create', 'MenuBuilderController@itemCreate')->name('create');
             Route::post('/store', 'MenuBuilderController@itemStore')->name('store');
@@ -61,7 +60,7 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware'
         });
     });
 
-    // Settings Routes
+    // Settings
     Route::get('settings/general', 'SettingController@index')->name('settings.index');
     Route::put('settings/general', 'SettingController@update')->name('settings.update');
 });

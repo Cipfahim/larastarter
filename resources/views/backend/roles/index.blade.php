@@ -48,8 +48,8 @@
                                 <td class="text-center text-muted">#{{ $key + 1 }}</td>
                                 <td class="text-center">{{ $role->name }}</td>
                                 <td class="text-center">
-                                    @if ($role->permissions->count() > 0)
-                                        <span class="badge badge-info">{{ $role->permissions->count() }}</span>
+                                    @if ($role->permissions_count > 0)
+                                        <span class="badge badge-info">{{ $role->permissions_count }}</span>
                                     @else
                                         <span class="badge badge-danger">No permission found :(</span>
                                     @endif
