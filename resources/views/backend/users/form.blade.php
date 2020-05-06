@@ -67,8 +67,7 @@
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <input id="password" type="password" placeholder="******"
-                                           class="form-control @error('password') is-invalid @enderror" name="password"
-                                        {{ isset($user) ? '' : '' }}>
+                                           class="form-control @error('password') is-invalid @enderror" name="password">
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -116,6 +115,17 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="status" name="status"
+                                            @isset($user)
+                                                {{ $user->status == true ? 'checked' : '' }}
+                                            @endisset
+                                            >
+                                        <label class="custom-control-label" for="status">Status</label>
+                                    </div>
                                 </div>
 
                                 <button type="button" class="btn btn-danger" onClick="resetForm('userFrom')">

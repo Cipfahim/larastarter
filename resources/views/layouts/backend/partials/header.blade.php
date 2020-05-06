@@ -45,8 +45,8 @@
             </div>
             <ul class="header-menu nav">
                 <li class="dropdown nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
-                        <i class="nav-link-icon fa fa-cog"></i>
+                    <a href="{{ route('app.settings.index') }}" class="nav-link">
+                        <i class="nav-link-icon pe-7s-settings"></i>
                         Settings
                     </a>
                 </li>
@@ -68,7 +68,7 @@
                                      class="dropdown-menu dropdown-menu-right">
                                     <a tabindex="0" class="dropdown-item" href="{{ route('app.profile.index') }}">Profile</a>
                                     <a tabindex="0" class="dropdown-item" href="{{ route('app.profile.password.change') }}">Change Password</a>
-                                    <button type="button" tabindex="0" class="dropdown-item">Settings</button>
+                                    <a tabindex="0" class="dropdown-item" href="{{ route('app.settings.index') }}">Settings</a>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <button type="button" tabindex="0" class="dropdown-item" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">{{ __('Logout') }}</button>
