@@ -1,5 +1,7 @@
 @extends('layouts.backend.app')
 
+@section('title','Profile')
+
 @section('content')
     <div class="app-page-title">
         <div class="page-title-wrapper">

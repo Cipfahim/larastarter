@@ -10,6 +10,9 @@
    font-size: initial;
 }
 
+// Summernote
+@import '~summernote/dist/summernote-bs4.css';
+
 .closed-sidebar:not(.closed-sidebar-mobile) .app-header .app-header__logo .navbar-brand {
     display: none;
 }

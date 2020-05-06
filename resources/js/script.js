@@ -23,10 +23,10 @@ $(document).ready(function() {
     // $("#datatable").DataTable();
 
     // Summernote config
-    // $('.summernote').summernote({
-    //     tabsize: 2,
-    //     height: 400
-    // });
+    $('.summernote').summernote({
+        tabsize: 2,
+        height: 400
+    });
 
     // Dropify
     $('.dropify').dropify();

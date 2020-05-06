@@ -49,7 +49,7 @@ class PageController extends Controller
             'body' => $request->body,
             'meta_description' => $request->meta_description,
             'meta_keywords' => $request->meta_keywords,
-            'status' => $request->status,
+            'status' => $request->filled('status'),
         ]);
         // upload images
         if ($request->hasFile('image')) {
@@ -98,7 +98,7 @@ class PageController extends Controller
             'body' => $request->body,
             'meta_description' => $request->meta_description,
             'meta_keywords' => $request->meta_keywords,
-            'status' => $request->status,
+            'status' => $request->filled('status'),
         ]);
         // upload images
         if ($request->hasFile('image')) {
@@ -119,6 +119,6 @@ class PageController extends Controller
     {
         $page->delete();
         notify()->success('Page Successfully Deleted.', 'Deleted');
-        return redirect()->back();
+        return back();
     }
 }
