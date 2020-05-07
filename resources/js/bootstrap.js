@@ -7,8 +7,8 @@ try {
     require('select2');
     // Dropify
     require('dropify/src/js/dropify');
-    // Summernote
-    require('summernote/dist/summernote-bs4');
+    // Nestable
+    require('nestable2/jquery.nestable');
 } catch (e) {}
 
 /**

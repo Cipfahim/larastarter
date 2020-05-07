@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Menu extends Model
 {
@@ -22,5 +23,35 @@ class Menu extends Model
         return $this->hasMany(MenuItem::class)
             ->doesntHave('parent')
             ->orderBy('order','asc');
+    }
+
+    /**
+     * Flush the cache
+     */
+    public static function flushCache()
+    {
+        Cache::forget('backend.sidebar.menu');
+    }
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function () {
+            self::flushCache();
+        });
+
+        static::created(function() {
+            self::flushCache();
+        });
+
+        static::deleted(function() {
+            self::flushCache();
+        });
     }
 }

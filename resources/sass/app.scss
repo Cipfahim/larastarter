@@ -10,8 +10,43 @@
    font-size: initial;
 }
 
-// Summernote
-@import '~summernote/dist/summernote-bs4.css';
+// nestable2
+@import '~nestable2/jquery.nestable';
+
+// menu builder
+.menu-builder .dd {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    max-width: inherit;
+    list-style: none;
+    font-size: 13px;
+    line-height: 20px;
+}
+.menu-builder .dd .item_actions {
+    z-index: 9;
+    position: relative;
+    top: 10px;
+    right: 10px;
+}
+.menu-builder .dd .item_actions .edit {
+    margin-right: 5px;
+}
+.menu-builder .dd-handle {
+    display: block;
+    height: 50px;
+    margin: 5px 0;
+    padding: 14px 25px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 700;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    border-radius: 3px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
 
 .closed-sidebar:not(.closed-sidebar-mobile) .app-header .app-header__logo .navbar-brand {
     display: none;

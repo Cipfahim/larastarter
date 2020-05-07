@@ -50,7 +50,7 @@ class MenuController extends Controller
         Menu::create([
             'name' => Str::slug($request->name),
             'description' => $request->description,
-            'editable' => true
+            'deletable' => true
         ]);
         notify()->success('Menu Successfully Added.', 'Added');
         return redirect()->route('app.menus.index');
@@ -96,7 +96,7 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         Gate::authorize('app.menus.destroy');
-        if ($menu->editable == true)
+        if ($menu->deletable == true)
         {
             $menu->delete();
             notify()->success('Menu Successfully Deleted.', 'Deleted');

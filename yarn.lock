@@ -3890,7 +3890,7 @@ jest-worker@^25.4.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jquery@*:
+jquery@*, jquery@>=1.7.2:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
@@ -4489,6 +4489,13 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
+
+nestable2@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/nestable2/-/nestable2-1.6.0.tgz#83ffe2483cca1c63771ec0012693b5155bfdd115"
+  integrity sha512-/jBy2FhAqik/yV1fYDqbP3OvGLb/wpjweg91UTzIREI+69hbqkKjJ9L+/FSBejYM0WMhvd2Q2p0+8XXetv0egA==
+  dependencies:
+    jquery ">=1.7.2"
 
 next-tick@~1.0.0:
   version "1.0.0"

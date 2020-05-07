@@ -16,10 +16,12 @@ class CreateMenuItemsTable extends Migration
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('menu_id');
+            $table->enum('type',['item','divider'])->default('item');
             $table->integer('parent_id')->nullable();
             $table->integer('order')->nullable();
-            $table->string('title');
-            $table->string('url');
+            $table->string('title')->nullable();
+            $table->string('divider_title')->nullable();
+            $table->string('url')->nullable();
             $table->string('target')->default("_self");
             $table->string('icon_class')->nullable();
             $table->timestamps();

@@ -19,15 +19,6 @@ function resetForm(formId) {
 }
 
 $(document).ready(function() {
-    // Datatable
-    // $("#datatable").DataTable();
-
-    // Summernote config
-    $('.summernote').summernote({
-        tabsize: 2,
-        height: 400
-    });
-
     // Dropify
     $('.dropify').dropify();
 
@@ -35,6 +26,4 @@ $(document).ready(function() {
     $('.select').each(function () {
         $(this).select2();
     });
-    // Nestable
-    // $('.dd').nestable({ /* config options */ });
 });

@@ -50,7 +50,9 @@ class MenuBuilderController extends Controller
         $menu = Menu::findOrFail($id);
         MenuItem::create([
             'menu_id' => $menu->id,
+            'type' => $request->type,
             'title' => $request->title,
+            'divider_title' => $request->divider_title,
             'url' => $request->url,
             'target' => $request->target,
             'icon_class' => $request->icon_class
@@ -85,7 +87,9 @@ class MenuBuilderController extends Controller
     {
         $menu = Menu::findOrFail($menuId);
         $menu->menuItems()->findOrFail($itemId)->update([
+            'type' => $request->type,
             'title' => $request->title,
+            'divider_title' => $request->divider_title,
             'url' => $request->url,
             'target' => $request->target,
             'icon_class' => $request->icon_class
