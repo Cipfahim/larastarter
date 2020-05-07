@@ -27,7 +27,7 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware'
 
     // Roles and Users
     Route::resource('roles', 'RoleController')->except(['show']);
-    Route::resource('users', 'UserController')->except(['show']);
+    Route::resource('users', 'UserController');
 
     // Backups
     Route::resource('backups', 'BackupController')->only(['index','store','destroy']);
