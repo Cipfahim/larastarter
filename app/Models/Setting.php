@@ -21,7 +21,7 @@ class Setting extends Model
      */
     public static function getAllSettings()
     {
-        return Cache::rememberForever('settings.all', function() {
+        return Cache::rememberForever('settings.all', function () {
             return self::all();
         });
     }
@@ -33,40 +33,36 @@ class Setting extends Model
      */
     public static function getSettingsArray()
     {
-        return Cache::rememberForever('settings.toArray', function() {
-            return self::getAllSettings()->pluck('value','name')->toArray();
+        return Cache::rememberForever('settings.toArray', function () {
+            return self::getAllSettings()->pluck('value', 'name')->toArray();
         });
     }
 
     /**
-     * Flush the cache
-     */
-    public static function flushCache()
-    {
-        Cache::forget('settings.all');
-        Cache::forget('settings.toArray');
-    }
-
-    /**
-     * The "booting" method of the model.
+     * Check if setting exists
      *
-     * @return void
+     * @param $key
+     * @return bool
      */
-    protected static function boot()
+    public static function has($key)
     {
-        parent::boot();
+        return (boolean)self::getAllSettings()->whereStrict('name', $key)->count();
+    }
 
-        static::updated(function () {
-            self::flushCache();
-        });
-
-        static::created(function() {
-            self::flushCache();
-        });
-
-        static::deleted(function() {
-            self::flushCache();
-        });
+    /**
+     * Get a settings value
+     *
+     * @param $key
+     * @param null $default
+     * @return bool|int|mixed
+     */
+    public static function get($key, $default = null)
+    {
+        if (self::has($key)) {
+            $setting = self::getAllSettings()->where('name', $key)->first();
+            return $setting->value;
+        }
+        return $default;
     }
 
     /**
@@ -78,10 +74,9 @@ class Setting extends Model
      */
     public static function add($key, $value)
     {
-        if ( self::has($key) ) {
+        if (self::has($key)) {
             return self::set($key, $value);
         }
-
         return self::create(['name' => $key, 'value' => $value]) ? $value : false;
     }
 
@@ -94,12 +89,11 @@ class Setting extends Model
      */
     public static function set($key, $value)
     {
-        if ( $setting = self::getAllSettings()->where('name', $key)->first() ) {
+        if ($setting = self::getAllSettings()->where('name', $key)->first()) {
             return $setting->update([
                 'name' => $key,
                 'value' => $value]) ? $value : false;
         }
-
         return self::add($key, $value);
     }
 
@@ -124,7 +118,7 @@ class Setting extends Model
      */
     public static function remove($key)
     {
-        if( self::has($key) ) {
+        if (self::has($key)) {
             return self::whereName($key)->delete();
         }
 
@@ -132,13 +126,33 @@ class Setting extends Model
     }
 
     /**
-     * Check if setting exists
-     *
-     * @param $key
-     * @return bool
+     * Flush the cache
      */
-    public static function has($key)
+    public static function flushCache()
     {
-        return (boolean) self::getAllSettings()->whereStrict('name', $key)->count();
+        Cache::forget('settings.all');
+        Cache::forget('settings.toArray');
+    }
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function () {
+            self::flushCache();
+        });
+
+        static::created(function () {
+            self::flushCache();
+        });
+
+        static::deleted(function () {
+            self::flushCache();
+        });
     }
 }

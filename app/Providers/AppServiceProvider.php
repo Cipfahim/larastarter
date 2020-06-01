@@ -26,11 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Set application global settings
-        config([
-            'settings' => Setting::getSettingsArray()
-        ]);
-
         // Custom blade directive for role check
         Blade::if('role', function ($role) {
             return Auth::user()->role->slug == $role;

@@ -7,9 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') | {{ config('settings.site_title', 'Laravel') }}</title>
+    <title>@yield('title') | {{ setting('site_title', 'LaraStarter') }}</title>
 
-    <link rel="icon"  href="{{ config('settings.site_favicon') != null ? Storage::disk('public')->url(config('settings.site_favicon')) : '' }}"/>
+    <link rel="icon"  href="{{ setting('site_favicon') != null ? Storage::disk('public')->url(setting('site_favicon')) : '' }}"/>
     <!-- Styles -->
     <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -18,7 +18,6 @@
 <body>
 <div id="app" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     @include('layouts.backend.partials.header')
-    @include('layouts.backend.partials.settings')
     <div class="app-main">
         @include('layouts.backend.partials.sidebar')
         <div class="app-main__outer">

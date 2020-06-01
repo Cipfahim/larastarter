@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UpdateGeneralSettingsRequest;
-use App\Http\Requests\Settings\UpdateLogoRequest;
+use App\Http\Requests\Settings\UpdateAppearanceRequest;
 use App\Http\Requests\Settings\UpdateMailSettingsRequest;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -31,25 +32,27 @@ class SettingController extends Controller
     public function update(UpdateGeneralSettingsRequest $request)
     {
         Setting::updateSettings($request->validated());
+        // Update .env file
+        Artisan::call("env:set APP_NAME='". $request->site_title ."'");
         notify()->success('Settings Successfully Updated.','Success');
         return back();
     }
 
     /**
-     * Show Logo Settings Page
+     * Show Appearance Settings Page
      * @return \Illuminate\View\View
      */
-    public function logo()
+    public function appearance()
     {
-        return view('backend.settings.logo');
+        return view('backend.settings.appearance');
     }
 
     /**
-     * Update Logo
-     * @param UpdateLogoRequest $request
+     * Update Appearance
+     * @param UpdateAppearanceRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateLogo(UpdateLogoRequest $request)
+    public function updateAppearance(UpdateAppearanceRequest $request)
     {
         if ($request->hasFile('site_logo')) {
             $this->deleteOldLogo(config('settings.site_logo'));
@@ -88,6 +91,15 @@ class SettingController extends Controller
     public function updateMailSettings(UpdateMailSettingsRequest $request)
     {
         Setting::updateSettings($request->validated());
+        // Update .env mail settings
+        Artisan::call("env:set MAIL_MAILER='". $request->mail_mailer ."'");
+        Artisan::call("env:set MAIL_HOST='". $request->mail_host ."'");
+        Artisan::call("env:set MAIL_PORT='". $request->mail_port ."'");
+        Artisan::call("env:set MAIL_USERNAME='". $request->mail_username ."'");
+        Artisan::call("env:set MAIL_PASSWORD='". $request->mail_password ."'");
+        Artisan::call("env:set MAIL_ENCRYPTION='". $request->mail_encryption ."'");
+        Artisan::call("env:set MAIL_FROM_ADDRESS='". $request->mail_from_address ."'");
+        Artisan::call("env:set MAIL_FROM_NAME='". $request->mail_from_name ."'");
         notify()->success('Settings Successfully Updated.','Success');
         return back();
     }

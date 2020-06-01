@@ -27,7 +27,7 @@ class UpdateGeneralSettingsRequest extends FormRequest
     {
         return [
             'site_title' => 'string|min:2|max:255',
-            'site_description' => 'string|min:2|max:255',
+            'site_description' => 'string|nullable|min:2|max:255',
             'site_address' => 'nullable|string|min:2|max:255',
         ];
     }

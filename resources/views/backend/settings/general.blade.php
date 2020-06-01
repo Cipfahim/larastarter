@@ -25,7 +25,7 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">How To Use:</h5>
-                    <p>You can get the value of each setting anywhere on your site by calling <code>config('settings.key')</code></p>
+                    <p>You can get the value of each setting anywhere on your site by calling <code>setting('key')</code></p>
                 </div>
             </div>
             <!-- form start -->
@@ -39,7 +39,7 @@
                             <label for="site_title">Site Title <code>{ key: site_title }</code></label>
                             <input type="text" name="site_title" id="site_title"
                                    class="form-control @error('site_title') is-invalid @enderror"
-                                   value="{{ config('settings.site_title') ?? old('site_title') }}"
+                                   value="{{ setting('site_title') ?? old('site_title') }}"
                                    placeholder="Site Title">
                             @error('site_title')
                             <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
                          <div class="form-group">
                              <label for="site_description">Site Description <code>{ key: site_description }</code></label>
                              <textarea name="site_description" id="site_description"
-                                       class="form-control @error('site_description') is-invalid @enderror">{{ config('settings.site_description') ?? old('site_description') }}</textarea>
+                                       class="form-control @error('site_description') is-invalid @enderror">{{ setting('site_description') ?? old('site_description') }}</textarea>
                              @error('site_description')
                              <span class="invalid-feedback" role="alert">
                                  <strong>{{ $message }}</strong>
@@ -61,7 +61,7 @@
                          <div class="form-group">
                              <label for="site_address">Site Address <code>{ key: site_address }</code></label>
                              <textarea name="site_address" id="site_address"
-                                       class="form-control @error('site_address') is-invalid @enderror">{{ config('settings.site_address') ?? old('site_address') }}</textarea>
+                                       class="form-control @error('site_address') is-invalid @enderror">{{ setting('site_address') ?? old('site_address') }}</textarea>
                              @error('site_address')
                              <span class="invalid-feedback" role="alert">
                                  <strong>{{ $message }}</strong>

@@ -2,7 +2,7 @@
     <div class="app-header__logo">
         {{--<div class="logo-src"></div>--}}
         <div class="navbar-brand">
-            {{ config('settings.site_title') }}
+            {{ setting('site_title','LaraStarter') }}
         </div>
         <div class="header__pane ml-auto">
             <div>

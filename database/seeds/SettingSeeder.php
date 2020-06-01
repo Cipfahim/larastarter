@@ -28,5 +28,15 @@ class SettingSeeder extends Seeder
         Setting::updateOrCreate(['name' => 'mail_encryption','value' => 'TLS']);
         Setting::updateOrCreate(['name' => 'mail_from_address','value' => '']);
         Setting::updateOrCreate(['name' => 'mail_from_name','value' => 'LaraStarter']);
+
+        // Socialite Settings
+        Setting::updateOrCreate(['name' => 'facebook_client_id','value' => null]);
+        Setting::updateOrCreate(['name' => 'facebook_client_secret','value' => null]);
+
+        Setting::updateOrCreate(['name' => 'google_client_id','value' => null]);
+        Setting::updateOrCreate(['name' => 'google_client_secret','value' => null]);
+
+        Setting::updateOrCreate(['name' => 'github_client_id','value' => null]);
+        Setting::updateOrCreate(['name' => 'github_client_secret','value' => null]);
     }
 }

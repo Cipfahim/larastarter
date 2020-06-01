@@ -5,7 +5,7 @@ namespace App\Http\Requests\Settings;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class UpdateLogoRequest extends FormRequest
+class UpdateAppearanceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Logo Settings')
+@section('title','Appearance Settings')
 
 @section('content')
     <div class="app-page-title">
@@ -10,7 +10,7 @@
                     <i class="pe-7s-settings icon-gradient bg-mean-fruit">
                     </i>
                 </div>
-                <div>Logo Settings</div>
+                <div>Appearance Settings</div>
             </div>
         </div>
     </div>
@@ -25,11 +25,11 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">How To Use:</h5>
-                    <p>You can get the value of each setting anywhere on your site by calling <code>config('settings.key')</code></p>
+                    <p>You can get the value of each setting anywhere on your site by calling <code>setting('key')</code></p>
                 </div>
             </div>
             <!-- form start -->
-            <form id="settingsFrom" autocomplete="off" role="form" method="POST" action="{{ route('app.settings.logo.update') }}"
+            <form id="settingsFrom" autocomplete="off" role="form" method="POST" action="{{ route('app.settings.appearance.update') }}"
                   enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -41,7 +41,7 @@
                             <label for="site_logo">Logo (Only Image are allowed) <code>{ key: site_logo }</code></label>
                             <input type="file" name="site_logo" id="site_logo"
                                    class="dropify @error('site_logo') is-invalid @enderror"
-                                   data-default-file="{{ config('settings.site_logo') != null ?  Storage::url(config('settings.site_logo')) : '' }}">
+                                   data-default-file="{{ setting('site_logo') != null ?  Storage::url(setting('site_logo')) : '' }}">
                             @error('site_logo')
                                 <span class="text-danger" role="alert">
                                      <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
                             <label for="site_favicon">Favicon (Only Image are allowed, Size: 33 X 33) <code>{ key: site_favicon }</code></label>
                             <input type="file" name="site_favicon" id="site_favicon"
                                    class="dropify @error('site_favicon') is-invalid @enderror"
-                                   data-default-file="{{ config('settings.site_favicon') != null ?  Storage::url(config('settings.site_favicon')) : '' }}">
+                                   data-default-file="{{ setting('site_favicon') != null ?  Storage::url(setting('site_favicon')) : '' }}">
                             @error('site_favicon')
                                 <span class="text-danger" role="alert">
                                      <strong>{{ $message }}</strong>

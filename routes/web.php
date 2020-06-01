@@ -66,8 +66,8 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware'
         Route::get('general', 'SettingController@index')->name('index');
         Route::put('general', 'SettingController@update')->name('update');
 
-        Route::get('logo','SettingController@logo')->name('logo.index');
-        Route::put('logo','SettingController@updateLogo')->name('logo.update');
+        Route::get('appearance','SettingController@appearance')->name('appearance.index');
+        Route::put('appearance','SettingController@updateAppearance')->name('appearance.update');
 
         Route::get('mail','SettingController@mail')->name('mail.index');
         Route::put('mail','SettingController@updateMailSettings')->name('mail.update');
