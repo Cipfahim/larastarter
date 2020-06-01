@@ -79,6 +79,10 @@
                                     </td>
                                     <td class="text-center">{{ $user->created_at->diffForHumans() }}</td>
                                     <td class="text-center">
+                                        <a class="btn btn-secondary btn-sm" href="{{ route('app.users.show',$user->id) }}"><i
+                                                class="fas fa-eye"></i>
+                                            <span>Show</span>
+                                        </a>
                                         <a class="btn btn-info btn-sm" href="{{ route('app.users.edit',$user->id) }}"><i
                                                 class="fas fa-edit"></i>
                                             <span>Edit</span>

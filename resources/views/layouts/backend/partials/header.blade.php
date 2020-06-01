@@ -45,9 +45,9 @@
             </div>
             <ul class="header-menu nav">
                 <li class="dropdown nav-item">
-                    <a href="{{ route('app.settings.index') }}" class="nav-link">
-                        <i class="nav-link-icon pe-7s-settings"></i>
-                        Settings
+                    <a href="{{ route('welcome') }}" class="nav-link">
+                        <i class="nav-link-icon pe-7s-shuffle"></i>
+                        Visit Site
                     </a>
                 </li>
             </ul>
