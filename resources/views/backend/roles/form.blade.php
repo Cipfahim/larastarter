@@ -37,20 +37,13 @@
                     <div class="card-body">
                         <h5 class="card-title">Manage Roles</h5>
 
-                        <div class="form-group">
-                            <label for="name">Role Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                   name="name"
-                                   placeholder="Enter role name"
-                                   value="{{ isset($role) ? $role->name : old('name') }}"
-                                   required
-                                   autofocus>
-                            @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                        <x-forms.textbox label="Role Name"
+                                         name="name"
+                                         value="{{ $role->name ?? ''  }}"
+                                         placeholder="Enter role name"
+                                         field-attributes="required autofocus">
+                        </x-forms.textbox>
+
                         <div class="text-center">
                             <strong>Manage permissions for role</strong>
                             @error('permissions')
@@ -75,6 +68,11 @@
                                         <h5>Module: {{ $module->name }}</h5>
                                         @foreach($module->permissions as $key=>$permission)
                                             <div class="mb-3 ml-4">
+                                                <x-forms.checkbox :label="$permission->name"
+                                                                  name="permissions[]"
+                                                                  class="custom-checkbox mb-2"
+                                                                  :value="$user->status ?? null" />
+
                                                 <div class="custom-control custom-checkbox mb-2">
                                                     <input type="checkbox" class="custom-control-input"
                                                            id="permission-{{ $permission->id }}"

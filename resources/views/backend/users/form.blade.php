@@ -40,46 +40,27 @@
                         <div class="main-card mb-3 card">
                             <div class="card-body">
                                 <h5 class="card-title">User Info</h5>
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                           name="name" value="{{ isset($user) ? $user->name : old('name') }}"
-                                           autocomplete="name" autofocus>
-                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                           name="email" value="{{ isset($user) ? $user->email : old('email') }}"
-                                           autocomplete="email">
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
+                                <x-forms.textbox label="Name"
+                                                 name="name"
+                                                 value="{{ $user->name ?? ''  }}"
+                                                 field-attributes="required autofocus">
+                                </x-forms.textbox>
 
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input id="password" type="password" placeholder="******"
-                                           class="form-control @error('password') is-invalid @enderror" name="password">
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
+                                <x-forms.textbox type="email"
+                                                 label="Email"
+                                                 name="email"
+                                                 value="{{ $user->email ?? ''  }}" />
 
-                                <div class="form-group">
-                                    <label for="password_confirmation">Confirm Password</label>
-                                    <input type="password" class="form-control" id="password_confirmation"
-                                           name="password_confirmation" placeholder="******" {{ isset($user) ? '' : '' }}>
-                                </div>
+                                <x-forms.textbox type="password"
+                                                 label="Password"
+                                                 name="password"
+                                                 placeholder="******" />
+
+                                <x-forms.textbox type="password"
+                                                 label="Confirm Password"
+                                                 name="password_confirmation"
+                                                 placeholder="******" />
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -89,59 +70,33 @@
                         <div class="main-card mb-3 card">
                             <div class="card-body">
                                 <h5 class="card-title">Select Role and Status</h5>
-                                <div class="position-relative form-group">
-                                    <label for="role">Select Role</label>
-                                    <select id="role"
-                                            class="form-control select js-example-basic-single @error('role') is-invalid @enderror"
-                                            name="role" >
-                                        @foreach($roles as $key=>$role)
-                                            <option @if(isset($user)) {{ $user->role->id == $role->id ? 'selected' : '' }} @endif
-                                                    value="{{ $role->id }}">{{ $role->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('role')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                                <div class="position-relative form-group">
-                                    <label for="avatar">Avatar (Only Image are allowed) </label>
-                                    <input type="file" name="avatar" id="avatar"
-                                           class="dropify @error('avatar') is-invalid @enderror"
-                                           data-default-file="{{ isset($user) ? $user->getFirstMediaUrl('avatar','thumb') : '' }}">
-                                    @error('avatar')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="custom-control custom-switch">
-                                        <input type="checkbox" class="custom-control-input" id="status" name="status"
-                                            @isset($user)
-                                                {{ $user->status == true ? 'checked' : '' }}
-                                            @endisset
-                                            >
-                                        <label class="custom-control-label" for="status">Status</label>
-                                    </div>
-                                </div>
+                                <x-forms.select label="Select Role"
+                                                name="role"
+                                                class="select js-example-basic-single">
+                                    @foreach($roles as $key=>$role)
+                                        <x-forms.select-item :value="$role->id" :label="$role->name" :selected="$user->role->id ?? null"/>
+                                    @endforeach
+                                </x-forms.select>
 
-                                <button type="button" class="btn btn-danger" onClick="resetForm('userFrom')">
-                                    <i class="fas fa-redo"></i>
-                                    <span>Reset</span>
-                                </button>
+                                <x-forms.dropify label="Avatar (Only Image are allowed)"
+                                                 name="avatar"
+                                                 value="{{ isset($user) ? $user->getFirstMediaUrl('avatar','thumb') : ''  }}"/>
 
-                                <button type="submit" class="btn btn-primary">
-                                    @isset($user)
-                                        <i class="fas fa-arrow-circle-up"></i>
-                                        <span>Update</span>
-                                    @else
-                                        <i class="fas fa-plus-circle"></i>
-                                        <span>Create</span>
-                                    @endisset
-                                </button>
+                                <x-forms.checkbox label="Status"
+                                                  name="status"
+                                                  class="custom-switch"
+                                                  :value="$user->status ?? null" />
+
+
+                                <x-forms.button label="Reset" class="btn-danger" icon-class="fas fa-redo" on-click="resetForm('userFrom')"/>
+
+
+                                @isset($user)
+                                    <x-forms.button type="submit" label="Update" icon-class="fas fa-arrow-circle-up"/>
+                                @else
+                                    <x-forms.button type="submit" label="Create" icon-class="fas fa-plus-circle"/>
+                                @endisset
                             </div>
                             <!-- /.card-body -->
                         </div>
