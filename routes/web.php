@@ -18,7 +18,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+// Socialite routes
+Route::group(['as'=>'login.','prefix'=>'login','namespace'=>'Auth'], function () {
+    Route::get('/{provider}', 'LoginController@redirectToProvider')->name('provider');
+    Route::get('/{provider}/callback', 'LoginController@handleProviderCallback')->name('callback');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -64,12 +68,16 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware'
     // Settings
     Route::group(['as'=>'settings.','prefix'=>'settings'], function () {
         Route::get('general', 'SettingController@index')->name('index');
-        Route::put('general', 'SettingController@update')->name('update');
+        Route::patch('general', 'SettingController@update')->name('update');
 
         Route::get('appearance','SettingController@appearance')->name('appearance.index');
-        Route::put('appearance','SettingController@updateAppearance')->name('appearance.update');
+        Route::patch('appearance','SettingController@updateAppearance')->name('appearance.update');
 
         Route::get('mail','SettingController@mail')->name('mail.index');
-        Route::put('mail','SettingController@updateMailSettings')->name('mail.update');
+        Route::patch('mail','SettingController@updateMailSettings')->name('mail.update');
+
+        Route::get('socialite','SettingController@socialite')->name('socialite.index');
+        Route::patch('socialite','SettingController@updateSocialiteSettings')->name('socialite.update');
+
     });
 });

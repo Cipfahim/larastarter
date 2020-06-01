@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UpdateGeneralSettingsRequest;
 use App\Http\Requests\Settings\UpdateAppearanceRequest;
 use App\Http\Requests\Settings\UpdateMailSettingsRequest;
+use App\Http\Requests\Settings\UpdateSocialiteSettingsRequest;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -100,6 +101,38 @@ class SettingController extends Controller
         Artisan::call("env:set MAIL_ENCRYPTION='". $request->mail_encryption ."'");
         Artisan::call("env:set MAIL_FROM_ADDRESS='". $request->mail_from_address ."'");
         Artisan::call("env:set MAIL_FROM_NAME='". $request->mail_from_name ."'");
+        notify()->success('Settings Successfully Updated.','Success');
+        return back();
+    }
+
+    /**
+     * Show Socialite Settings Page
+     * @return \Illuminate\View\View
+     */
+    public function socialite()
+    {
+        return view('backend.settings.socialite');
+    }
+
+    /**
+     * Update Socialite Settings
+     *
+     * @param UpdateSocialiteSettingsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateSocialiteSettings(UpdateSocialiteSettingsRequest $request)
+    {
+        Setting::updateSettings($request->validated());
+        // Update .env file
+        Artisan::call("env:set FACEBOOK_CLIENT_ID='". $request->facebook_client_id ."'");
+        Artisan::call("env:set FACEBOOK_CLIENT_SECRET='". $request->facebook_client_secret ."'");
+
+        Artisan::call("env:set GOOGLE_CLIENT_ID='". $request->google_client_id ."'");
+        Artisan::call("env:set GOOGLE_CLIENT_SECRET='". $request->google_client_secret ."'");
+
+        Artisan::call("env:set GITHUB_CLIENT_ID='". $request->github_client_id ."'");
+        Artisan::call("env:set GITHUB_CLIENT_SECRET='". $request->github_client_secret ."'");
+
         notify()->success('Settings Successfully Updated.','Success');
         return back();
     }

@@ -32,7 +32,7 @@
             <form id="settingsFrom" autocomplete="off" role="form" method="POST" action="{{ route('app.settings.appearance.update') }}"
                   enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
+                @method('PATCH')
                 <!-- general form elements -->
                 <div class="main-card mb-3 card">
                     <div class="card-body">

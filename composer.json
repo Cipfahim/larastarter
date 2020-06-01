@@ -17,6 +17,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "imliam/laravel-env-set-command": "^1.1",
         "laravel/framework": "^7.0",
+        "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "spatie/laravel-backup": "^6.9",
