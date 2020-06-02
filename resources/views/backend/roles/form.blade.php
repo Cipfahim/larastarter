@@ -68,11 +68,6 @@
                                         <h5>Module: {{ $module->name }}</h5>
                                         @foreach($module->permissions as $key=>$permission)
                                             <div class="mb-3 ml-4">
-                                                <x-forms.checkbox :label="$permission->name"
-                                                                  name="permissions[]"
-                                                                  class="custom-checkbox mb-2"
-                                                                  :value="$user->status ?? null" />
-
                                                 <div class="custom-control custom-checkbox mb-2">
                                                     <input type="checkbox" class="custom-control-input"
                                                            id="permission-{{ $permission->id }}"
