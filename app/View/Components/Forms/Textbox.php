@@ -4,7 +4,7 @@ namespace App\View\Components\Forms;
 
 use Illuminate\View\Component;
 
-class TextBox extends Component
+class Textbox extends Component
 {
     /**
      * The field type.
@@ -83,6 +83,6 @@ class TextBox extends Component
      */
     public function render()
     {
-        return view('components.forms.text-box');
+        return view('components.forms.textbox');
     }
 }
