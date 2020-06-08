@@ -81,3 +81,6 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace' => 'Backend','middleware'
 
     });
 });
+
+// Pages route e.g. [about,contact,etc]
+Route::get('/{slug}', 'PageController')->name('page');

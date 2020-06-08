@@ -50,7 +50,7 @@
                                 <td class="text-center text-muted">#{{ $key + 1 }}</td>
                                 <td style="width: 30%">{{ $page->title }}</td>
                                 <td>
-                                    <a href="#" target="_blank">
+                                    <a href="{{ route('page',$page->slug) }}" target="_blank">
                                         {{ $page->slug }}
                                     </a>
                                 </td>
